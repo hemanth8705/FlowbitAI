@@ -16,7 +16,7 @@ def RouteAction(agent_output: dict):
         result["status"] = "success"
         result["route"] = "log_only"
 
-    elif action == "alert_risk":
+    elif action == "trigger_alert":
         print("[Action Router] Alerting compliance team.")
         result["status"] = "success"
         result["route"] = "/risk_alert"

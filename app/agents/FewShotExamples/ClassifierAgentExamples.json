@@ -1,0 +1,389 @@
+[
+    {
+        "text": r"""
+                    - Item 1:
+                    Page_number: 1
+                    Text: Invoice
+                    Invoice Number 123
+                    Issue Date March 25, 2024
+                    Due Date March 25, 2024
+                    Status PAID
+                    Example, LLC Bill To
+                    123 Fake Street Customer
+                    New York City, NY 10012 Address
+                    (555) 867-5309 City, State Zipcode
+                    support@example.com customer@example.org
+                    Item Unit Cost Quantity Amount
+                    Subscription $19.00 1 $19.00
+                    Subtotal $19.00
+                    Tax Rate 0%
+                    Amount Due $19.00
+                    For questions, contact us anytime at support@example.com.
+                    Tables:
+
+                    Ocr_text:
+        
+        """,
+        "format": "pdf",
+        "intent": "invoice"
+    },
+    {
+        "text": r"""
+             - Item 1:
+            Page_number: 1
+            Text: Receipt
+            Receipt Number 123
+            Date paid March 25, 2024
+            Payment method ACH super long super long super long super long super long
+            Example, LLC Bill To
+            123 Fake Street Customer
+            New York City, NY 10012 Address
+            (555) 867-5309 City, State Zipcode
+            support@example.com customer@example.org
+            123456789
+            Item Unit Cost Quantity Amount
+            Subscription $19.00 1 $19.00
+            Subtotal $19.00
+            Tax $1.12
+            Total $20.12
+            Amount paid $20.12
+            Refunded on March 25, 2024 $5.00
+            For questions, contact us anytime at support@example.com.
+            Tables:
+
+            Ocr_text:
+        """,
+        "format": "pdf",
+        "intent": "payment_receipt"
+    },
+    {
+        "text": r"""
+            {{
+                "id ": "fa4da2ff-dcda-4367-a97d-0c9445147b73",
+                "items": [
+                    {{
+                    "name": "Canvas Slip Ons",
+                    "code": "CVG-096732",
+                    "description": "Shoes",
+                    "quantity": "1",
+                    "amount": {{
+                        "value": 1000
+                    }},
+                    "totalAmount": {{
+                        "value": 1000
+                    }} }}
+                    
+                ],
+                "requestReferenceNumber": "5fc10b93-bdbd-4f31-b31d-4575a3785009",
+                "receiptNumber": "7fa0ff6fa5a6",
+                "createdAt": "2021-07-13T15:25:45.000Z",
+                "updatedAt": "2021-07-13T15:26:49.000Z",
+                "paymentScheme": "master-card",
+                "expressCheckout": true,
+                "refundedAmount": "0",
+                "canPayPal": false,
+                "expiredAt": "2021-07-13T16:25:45.000Z",
+                "status": "COMPLETED",
+                "paymentStatus": "PAYMENT_SUCCESS",
+                "paymentDetails": {{
+                    "responses": {{
+                    "efs": {{
+                        "paymentTransactionReferenceNo": "0bea058b-ae8e-4bfc-90d0-7fa0ff6fa5a6",
+                        "status": "SUCCESS",
+                        "receipt": {{
+                        "transactionId": "b8bb70e1-f44f-4db3-bcb9-a939d38455a4",
+                        "receiptNo": "7fa0ff6fa5a6",
+                        "approval_code": "00001234",
+                        "approvalCode": "00001234"
+                        }},
+                        "payer": {{
+                        "fundingInstrument": {{
+                            "card": {{
+                            "cardNumber": "542482******7140",
+                            "expiryMonth": 9,
+                            "expiryYear": "2023"
+                            }}
+                        }}
+                        }},
+                        "amount": {{
+                        "total": {{
+                            "currency": "PHP",
+                            "value": 1000
+                        }}
+                        }},
+                        "created_at": "2021-07-13T15:26:49.514Z"
+                    }}
+                    }},
+                    "paymentAt": "2021-07-13T15:26:49.000Z",
+                    "3ds": false
+                }},
+                "buyer": {{
+                    "contact": {{
+                    "phone": "+639086216587",
+                    "email": "juan.delacruz@paymaya.com"
+                    }},
+                    "firstName": "Juan",
+                    "lastName": "Dela Cruz",
+                    "billingAddress": {{
+                    "line1": "6F Launchpad",
+                    "line2": "Reliance Street",
+                    "city": "Mandaluyong City",
+                    "state": "Metro Manila",
+                    "zipCode": "1552",
+                    "countryCode": "PH"
+                    }},
+                    "shippingAddress": {{
+                    "line1": "6F Launchpad",
+                    "line2": "Reliance Street",
+                    "city": "Mandaluyong City",
+                    "state": "Metro Manila",
+                    "zipCode": "1552",
+                    "countryCode": "PH"
+                    }}
+                }},
+                "merchant": {{
+                    "currency": "PHP",
+                    "email": "merchant@gmail.com",
+                    "locale": "en",
+                    "homepageUrl": "https://www.paymaya.com",
+                    "isEmailToMerchantEnabled": true,
+                    "isEmailToBuyerEnabled": true,
+                    "isPaymentFacilitator": false,
+                    "isPageCustomized": true,
+                    "supportedSchemes": [
+                    "Visa",
+                    "Mastercard",
+                    "JCB"
+                    ],
+                    "canPayPal": false,
+                    "payPalEmail": null,
+                    "payPalWebExperienceId": null,
+                    "expressCheckout": true,
+                    "name": "Omni Merchant via Mock Processor"
+                }},
+                "totalAmount": {{
+                    "value": "1000",
+                    "currency": "PHP",
+                    "details": {{
+                    "discount": "100.00",
+                    "serviceCharge": "0.00",
+                    "shippingFee": "200.00",
+                    "tax": "120.00",
+                    "subtotal": "780.00"
+                    }}
+                }},
+                "redirectUrl": {{
+                    "success": "https://www.merchantsite.com/success?id=5fc10b93-bdbd-4f31-b31d-4575a3785009",
+                    "failure": "https://www.mechantsite.com/failure?id=5fc10b93-bdbd-4f31-b31d-4575a3785009",
+                    "cancel": "https://www.merchantsite.com/cancel?id=5fc10b93-bdbd-4f31-b31d-4575a3785009"
+                }},
+                "transactionReferenceNumber": "0bea058b-ae8e-4bfc-90d0-7fa0ff6fa5a6"
+                }}
+
+
+        """,
+        "format": "json",
+        "intent": "payment_receipt"
+    },
+    {
+        "text":r"""
+                  
+      {{
+            "id": "e732f996-cb87-4120-b712-166d8183c01d",
+            "isPaid": true,
+            "status": "PAYMENT_SUCCESS",
+            "amount": "10",
+            "currency": "PHP",
+            "canVoid": true,
+            "canRefund": true,
+            "canCapture": false,
+            "createdAt": "2021-07-01T08:26:13.000Z",
+            "updatedAt": "2021-07-01T08:26:16.000Z",
+            "description": "Charge for maya.juan@mail.com",
+            "paymentTokenId": "f2Z54aBePxQ94bxbKTivBgtP79igw7EtVI2iQ5yC1qSbnpONVZiPBOszn6QWG8eamJ3aMwcshX0RDkCf7skvMCvZkmIwX88Bs4vBsmLpeXJLDpsMkxyhz1PKgTWB9s3ndGtr1SDLOFDrr8IG242xJFCkEWHpdlWkG7lts",
+            "fundSource": {{
+                "type": "paymaya",
+                "id": null,
+                "description": "PayMaya Account",
+                "details": {{
+                "scheme": "master-card",
+                "last4": "4154",
+                "first6": "545301",
+                "masked": "545301******4154",
+                "issuer": "Others"
+                }}
+            }},
+            "receipt": {{
+                "transactionId": "41f17efc-a48b-450d-a69d-6808fd35e8ec",
+                "receiptNo": "18976ad0a321",
+                "approval_code": "00001234",
+                "approvalCode": "00001234"
+            }},
+            "metadata": {{}},
+            "approvalCode": "00001234",
+            "receiptNumber": "18976ad0a321",
+            "requestReferenceNumber":"ABC000001"
+            }}
+
+        """,
+        "format": "json",
+        "intent": "payment_receipt"
+
+    },
+     {
+        "text": r"""
+          {{
+        "id": "e732f996-cb87-4120-b712-166d8183c01d",
+        "isPaid": true,
+        "status": "PAYMENT_SUCCESS",
+        "amount": "100",
+        "currency": "PHP",
+        "canVoid": true,
+        "canRefund": false,
+        "canCapture": false,
+        "createdAt": "2021-07-01T08:17:23.000Z",
+        "updatedAt": "2021-07-01T08:17:47.000Z",
+        "description": "Charge for maya.juan@mail.com",
+        "paymentTokenId": "GFwIun6Avo1kYe0nW7S1jVysqosocS9uMU7XNpMcUEksHx8FZXbE7TQZ3F1YQwZb5xHiAv2b2hpvrpVwYuNH1gPSPdaq8Zr90WXBRMfDVC8KkiHswlRjPz5ToTPEGy76S4S052RkAiwFcC6uAEGKnFyiGZzx7NMcYczrCK8",
+        "fundSource": {{
+            "type": "card",
+            "id": "GFwIun6Avo1kYe0nW7S1jVysqosocS9uMU7XNpMcUEksHx8FZXbE7TQZ3F1YQwZb5xHiAv2b2hpvrpVwYuNH1gPSPdaq8Zr90WXBRMfDVC8KkiHswlRjPz5ToTPEGy76S4S052RkAiwFcC6uAEGKnFyiGZzx7NMcYczrCK8",
+            "description": "**** **** **** 4154",
+            "details": {{
+            "scheme": "master-card",
+            "last4": "4154",
+            "first6": "545301",
+            "masked": "545301******4154",
+            "issuer": "Others"
+            }}
+        }},
+        "receipt": {{
+            "transactionId": "1ec32b34-eb53-4d7b-bcd4-b846aff1d601",
+            "receiptNo": "eb1ae1105a61",
+            "approval_code": "00001234",
+            "approvalCode": "00001234"
+        }},
+        "approvalCode": "00001234",
+        "receiptNumber": "eb1ae1105a61",
+        "requestReferenceNumber": "1625127550"
+        }}
+        
+        """,
+        "format": "json",
+        "intent": "payment_receipt"
+    },
+    {
+        "text": r"""
+                Subject: Immediate Attention Required: Overcharged on Last Invoice
+
+        Dear Support Team,
+
+        I am writing to express my frustration regarding an issue with my recent invoice (Invoice #12345). I noticed that I was charged an amount higher than what was initially quoted to me during the sales call. The discrepancy is significant, and I request an immediate resolution to this problem.
+
+        On March 15th, 2025, I had a call with one of your sales representatives, and we discussed the pricing for the software package I purchased. The quoted price was $1200, but the invoice I received lists the total as $1500. This $300 overcharge is not something I can overlook, and I would like it resolved at the earliest.
+
+        Furthermore, I am concerned about the lack of transparency in the invoicing process. The breakdown of charges is unclear, and it doesn’t match the details provided in our agreement. Can you please provide me with a detailed explanation of how these charges were calculated?
+
+        I have attached a copy of the invoice and the email correspondence from the sales representative. Please look into this matter urgently and adjust the invoice accordingly. If I do not hear back from you within the next 48 hours, I will have no choice but to escalate this issue.
+
+        Thank you for your prompt attention to this matter. I expect to hear back from you soon with an update on the resolution.
+
+        Sincerely,
+        John Doe
+        8121812181
+        example@gmail.com
+        """,
+        "format": "email",
+        "intent": "invoice_dispute"
+    },{
+        "text": r"""
+        Invoice Number: INV-10001
+        Invoice Date: May 28, 2025
+        Due Date: June 12, 2025
+
+        Bill To:
+        ABC Corp.
+        123 Business Street
+        New York, NY 10001
+
+        Ship To:
+        XYZ Enterprises
+        456 Tech Park
+        San Francisco, CA 94105
+
+        Description of Services Provided:
+
+        Software Development Package
+
+        Custom CRM Development (2 Developers)
+
+        Estimated Delivery Date: June 15, 2025
+
+        Hourly Rate: $100/hour
+
+        Total Hours: 80 hours
+
+        Amount: $8,000.00
+
+        Software Integration with Existing Tools
+
+        Integrating CRM with existing marketing platform
+
+        Total Hours: 50 hours
+
+        Amount: $5,000.00
+
+        Training & Documentation
+
+        On-site training for your team
+
+        Total Hours: 20 hours
+
+        Amount: $2,000.00
+
+        Subtotal: $15,000.00
+        Sales Tax (8.5%): $1,275.00
+
+        Total Amount Due: $16,275.00
+
+        Payment Instructions:
+        Please make the payment via wire transfer to the following account:
+        Bank Name: XYZ Bank
+        Account Number: 123456789
+        Routing Number: 987654321
+
+        If you have any questions regarding this invoice, please feel free to contact our billing department at billing@xyzcorp.com or call us at (123) 456-7890.
+        """ ,
+        "format": "pdf",
+        "intent": "invoice"
+    },{
+        "text" : r"""
+        Subject: Invoice Discrepancy on INV-12345
+
+        Dear Accounts Team,
+
+        I hope you’re doing well. I am reaching out regarding Invoice #12345, which was issued on May 25, 2025. Upon reviewing the invoice, I noticed a few discrepancies that I need clarification on.
+
+        Overcharged Items:
+        On the invoice, I have been charged for 3 units of product "ABC-123", but I only ordered 2 units. I have attached the original purchase order (PO-3456) as proof of this.
+
+        Incorrect Shipping Charges:
+        The shipping charges listed as $50 are incorrect. According to the agreement, shipping should have been free as part of the promotion I signed up for.
+
+        Missing Discount:
+        There was a 10% discount offered for bulk orders, which I believe was not applied to my invoice. Could you please apply this discount retroactively and provide an updated invoice?
+
+        I would appreciate it if you could look into these issues and provide a revised invoice. If any additional information is required from my side, please let me know. I expect to receive the corrected invoice by June 5, 2025.
+
+        Thank you for your prompt attention to this matter.
+
+        Sincerely,
+        Michael Brown
+        [Phone Number]
+        8452365216
+example4@gmail.com
+        """,
+         "format": "email",
+        "intent": "invoice_dispute"
+    }
+]

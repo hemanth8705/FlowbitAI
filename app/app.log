@@ -1,0 +1,180 @@
+2025-06-04 23:16:12,090 - __main__ - INFO - Application starting up...
+2025-06-04 23:16:12,091 - processor.fileProcessor - INFO - Processing file: E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\pdfs\invoice.pdf
+2025-06-04 23:16:12,091 - processor.fileProcessor - INFO - Processing PDF file.
+2025-06-04 23:16:12,092 - processor.fileProcessor - INFO - Starting extraction from PDF: E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\pdfs\invoice.pdf
+2025-06-04 23:16:12,095 - processor.fileProcessor - DEBUG - PDF opened successfully with 1 pages.
+2025-06-04 23:16:12,096 - processor.fileProcessor - DEBUG - Processing page 1.
+2025-06-04 23:16:12,132 - processor.fileProcessor - DEBUG - Found 0 table(s) on page 1.
+2025-06-04 23:16:12,134 - processor.fileProcessor - INFO - Completed extraction from PDF successfully.
+2025-06-04 23:16:12,145 - processor.fileProcessor - DEBUG - Converting JSON data into human-readable text for LLM input.
+2025-06-04 23:16:12,145 - processor.fileProcessor - DEBUG - Converting JSON data into human-readable text for LLM input.
+2025-06-04 23:16:12,146 - processor.fileProcessor - DEBUG - Converting JSON data into human-readable text for LLM input.
+2025-06-04 23:16:12,146 - processor.fileProcessor - DEBUG - Conversion completed.
+2025-06-04 23:16:12,147 - processor.fileProcessor - DEBUG - Conversion completed.
+2025-06-04 23:16:12,147 - processor.fileProcessor - DEBUG - Conversion completed.
+2025-06-04 23:16:12,148 - processor.fileProcessor - INFO - PDF file processed successfully.
+2025-06-04 23:16:12,152 - agents.ClassifierAgent - INFO - Classifying input text.
+2025-06-04 23:16:13,420 - agents.ClassifierAgent - DEBUG - LLM chain invoked successfully.
+2025-06-04 23:16:13,421 - agents.ClassifierAgent - DEBUG - LLM output after stripping: { "format": "pdf", "intent": "invoice" }
+2025-06-04 23:16:13,422 - agents.ClassifierAgent - DEBUG - Extracting JSON from LLM output.
+2025-06-04 23:16:13,423 - agents.ClassifierAgent - DEBUG - Successfully parsed JSON: {'format': 'pdf', 'intent': 'invoice'}
+2025-06-04 23:16:13,423 - agents.ClassifierAgent - INFO - Classification successful: {'format': 'pdf', 'intent': 'invoice'}
+2025-06-04 23:16:13,426 - agents.PdfAgent - INFO - Processing PDF text through PDF agent chain.
+2025-06-04 23:16:13,427 - agents.PdfAgent - DEBUG - PDF text received for processing: - Item 1:
+  Page_number: 1
+  Text: Invoice
+Invoice Number 123
+Issue Date March 25, 2024
+Due Date Mar...
+2025-06-04 23:16:14,402 - agents.PdfAgent - DEBUG - PDF agent chain invoked successfully.
+2025-06-04 23:16:14,402 - agents.PdfAgent - DEBUG - LLM output after stripping: ```json
+{
+  "document_type": "invoice",
+  "extracted_data": {
+    "Invoice Number/ID": "123",
+    "I...
+2025-06-04 23:16:14,403 - agents.PdfAgent - DEBUG - Extracting JSON from Pdf agent output.
+2025-06-04 23:16:14,403 - agents.PdfAgent - DEBUG - Successfully parsed JSON: {'document_type': 'invoice', 'extracted_data': {'Invoice Number/ID': '123', 'Issue Date': 'March 25, 2024', 'Due Date': 'March 25, 2024', 'Customer Name': 'Example, LLC', 'Line items': [{'description': 'Subscription', 'quantity': 1, 'unit price': 19.0, 'tax': 0, 'amount': 19.0}], 'Currency': 'USD', 'Total Amount': 19.0}, 'anomalies': [], 'suggested_action': 'log_only'}
+2025-06-04 23:16:14,404 - agents.PdfAgent - INFO - PDF processing successful, extracted data: {'document_type': 'invoice', 'extracted_data': {'Invoice Number/ID': '123', 'Issue Date': 'March 25, 2024', 'Due Date': 'March 25, 2024', 'Customer Name': 'Example, LLC', 'Line items': [{'description': 'Subscription', 'quantity': 1, 'unit price': 19.0, 'tax': 0, 'amount': 19.0}], 'Currency': 'USD', 'Total Amount': 19.0}, 'anomalies': [], 'suggested_action': 'log_only'}
+2025-06-04 23:16:14,407 - __main__ - INFO - Application finished!
+2025-06-04 23:17:13,809 - __main__ - INFO - Application starting up...
+2025-06-04 23:17:13,811 - processor.fileProcessor - INFO - Processing file: E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\pdfs\invoice.pdf
+2025-06-04 23:17:13,812 - processor.fileProcessor - INFO - Processing PDF file.
+2025-06-04 23:17:13,814 - processor.fileProcessor - INFO - Starting extraction from PDF: E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\pdfs\invoice.pdf
+2025-06-04 23:17:13,824 - processor.fileProcessor - DEBUG - PDF opened successfully with 1 pages.
+2025-06-04 23:17:13,825 - processor.fileProcessor - DEBUG - Processing page 1.
+2025-06-04 23:17:13,861 - processor.fileProcessor - DEBUG - Found 0 table(s) on page 1.
+2025-06-04 23:17:13,862 - processor.fileProcessor - INFO - Completed extraction from PDF successfully.
+2025-06-04 23:17:13,864 - processor.fileProcessor - DEBUG - Converting JSON data into human-readable text for LLM input.
+2025-06-04 23:17:13,865 - processor.fileProcessor - DEBUG - Converting JSON data into human-readable text for LLM input.
+2025-06-04 23:17:13,866 - processor.fileProcessor - DEBUG - Converting JSON data into human-readable text for LLM input.
+2025-06-04 23:17:13,866 - processor.fileProcessor - DEBUG - Conversion completed.
+2025-06-04 23:17:13,866 - processor.fileProcessor - DEBUG - Conversion completed.
+2025-06-04 23:17:13,867 - processor.fileProcessor - DEBUG - Conversion completed.
+2025-06-04 23:17:13,868 - processor.fileProcessor - INFO - PDF file processed successfully.
+2025-06-04 23:17:13,873 - agents.ClassifierAgent - INFO - Classifying input text.
+2025-06-04 23:17:15,165 - agents.ClassifierAgent - DEBUG - LLM chain invoked successfully.
+2025-06-04 23:17:15,166 - agents.ClassifierAgent - DEBUG - LLM output after stripping: { "format": "pdf", "intent": "invoice" }
+2025-06-04 23:17:15,167 - agents.ClassifierAgent - DEBUG - Extracting JSON from LLM output.
+2025-06-04 23:17:15,168 - agents.ClassifierAgent - DEBUG - Successfully parsed JSON: {'format': 'pdf', 'intent': 'invoice'}
+2025-06-04 23:17:15,168 - agents.ClassifierAgent - INFO - Classification successful: {'format': 'pdf', 'intent': 'invoice'}
+2025-06-04 23:17:15,170 - agents.PdfAgent - INFO - Processing PDF text through PDF agent chain.
+2025-06-04 23:17:15,171 - agents.PdfAgent - DEBUG - PDF text received for processing: - Item 1:
+  Page_number: 1
+  Text: Invoice
+Invoice Number 123
+Issue Date March 25, 2024
+Due Date Mar...
+2025-06-04 23:17:16,181 - agents.PdfAgent - DEBUG - PDF agent chain invoked successfully.
+2025-06-04 23:17:16,182 - agents.PdfAgent - DEBUG - LLM output after stripping: ```json
+{
+  "document_type": "invoice",
+  "extracted_data": {
+    "Invoice Number/ID": "123",
+    "I...
+2025-06-04 23:17:16,183 - agents.PdfAgent - DEBUG - Extracting JSON from Pdf agent output.
+2025-06-04 23:17:16,185 - agents.PdfAgent - DEBUG - Successfully parsed JSON: {'document_type': 'invoice', 'extracted_data': {'Invoice Number/ID': '123', 'Issue Date': 'March 25, 2024', 'Due Date': 'March 25, 2024', 'Customer Name': 'Example, LLC', 'Line items': [{'description': 'Subscription', 'quantity': 1, 'unit price': '$19.00', 'tax': '0%', 'amount': '$19.00'}], 'Currency': '$', 'Total Amount': '$19.00'}, 'anomalies': [], 'suggested_action': 'log_and_close'}
+2025-06-04 23:17:16,186 - agents.PdfAgent - INFO - PDF processing successful, extracted data: {'document_type': 'invoice', 'extracted_data': {'Invoice Number/ID': '123', 'Issue Date': 'March 25, 2024', 'Due Date': 'March 25, 2024', 'Customer Name': 'Example, LLC', 'Line items': [{'description': 'Subscription', 'quantity': 1, 'unit price': '$19.00', 'tax': '0%', 'amount': '$19.00'}], 'Currency': '$', 'Total Amount': '$19.00'}, 'anomalies': [], 'suggested_action': 'log_and_close'}
+2025-06-04 23:17:16,189 - __main__ - INFO - Application finished!
+2025-06-04 23:23:18,495 - __main__ - INFO - ============================== NEW SECTION ==============================
+2025-06-04 23:23:18,495 - __main__ - INFO - Application starting up...
+2025-06-04 23:23:18,496 - processor.fileProcessor - INFO - Processing file: E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\json\sample1.json
+2025-06-04 23:23:18,535 - processor.fileProcessor - INFO - JSON file processed successfully.
+2025-06-04 23:23:18,537 - agents.ClassifierAgent - INFO - Classifying input text.
+2025-06-04 23:23:19,754 - agents.ClassifierAgent - DEBUG - LLM chain invoked successfully.
+2025-06-04 23:23:19,755 - agents.ClassifierAgent - DEBUG - LLM output after stripping: ```json
+{ "format": "json", "intent": "invoice" }
+```
+2025-06-04 23:23:19,756 - agents.ClassifierAgent - DEBUG - Extracting JSON from LLM output.
+2025-06-04 23:23:19,757 - agents.ClassifierAgent - DEBUG - Successfully parsed JSON: {'format': 'json', 'intent': 'invoice'}
+2025-06-04 23:23:19,757 - agents.ClassifierAgent - INFO - Classification successful: {'format': 'json', 'intent': 'invoice'}
+2025-06-04 23:23:19,759 - agents.JsonAgent - INFO - Processing JSON payload through JsonAgent chain.
+2025-06-04 23:24:26,698 - __main__ - INFO - ============================== NEW SECTION ==============================
+2025-06-04 23:24:26,700 - __main__ - INFO - Application starting up...
+2025-06-04 23:24:26,701 - processor.fileProcessor - INFO - Processing file: E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\json\sample1.json
+2025-06-04 23:24:26,703 - processor.fileProcessor - INFO - JSON file processed successfully.
+2025-06-04 23:24:26,707 - agents.ClassifierAgent - INFO - Classifying input text.
+2025-06-04 23:24:27,944 - agents.ClassifierAgent - DEBUG - LLM chain invoked successfully.
+2025-06-04 23:24:27,945 - agents.ClassifierAgent - DEBUG - LLM output after stripping: ```json
+{ "format": "json", "intent": "invoice" }
+```
+2025-06-04 23:24:27,945 - agents.ClassifierAgent - DEBUG - Extracting JSON from LLM output.
+2025-06-04 23:24:27,946 - agents.ClassifierAgent - DEBUG - Successfully parsed JSON: {'format': 'json', 'intent': 'invoice'}
+2025-06-04 23:24:27,946 - agents.ClassifierAgent - INFO - Classification successful: {'format': 'json', 'intent': 'invoice'}
+2025-06-04 23:24:27,948 - agents.JsonAgent - INFO - Processing JSON payload through JsonAgent chain.
+2025-06-04 23:24:27,948 - agents.JsonAgent - DEBUG - Payload text: {'header': {'tax_scheme': 'GST', 'version': '1.0', 'invoice_reference_no': 'IRN1234567890'}, 'transa...
+2025-06-04 23:24:28,620 - agents.JsonAgent - DEBUG - JsonAgent chain invoked successfully.
+2025-06-04 23:24:28,622 - agents.JsonAgent - DEBUG - LLM output after stripping: ```json
+{
+  "status": "valid",
+  "anomalies": [
+    {
+      "field": "note",
+      "description": "Extra field not in schema.",
+      "severity": "minor"
+    }
+  ],
+  "suggested_action": "log_only"
+}
+...
+2025-06-04 23:24:28,623 - agents.JsonAgent - DEBUG - Extracting JSON from JSON agent output.
+2025-06-04 23:24:28,624 - agents.JsonAgent - DEBUG - Successfully parsed JSON: {'status': 'valid', 'anomalies': [{'field': 'note', 'description': 'Extra field not in schema.', 'severity': 'minor'}], 'suggested_action': 'log_only'}
+2025-06-04 23:24:28,625 - agents.JsonAgent - INFO - JSON validation successful: {'status': 'valid', 'anomalies': [{'field': 'note', 'description': 'Extra field not in schema.', 'severity': 'minor'}], 'suggested_action': 'log_only'}
+2025-06-04 23:24:28,631 - __main__ - INFO - Application finished!
+2025-06-04 23:26:02,389 - __main__ - INFO - ============================== NEW SECTION ==============================
+2025-06-04 23:26:02,391 - __main__ - INFO - Application starting up...
+2025-06-04 23:26:02,392 - processor.fileProcessor - INFO - Processing file: E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\json\sample1.json
+2025-06-04 23:26:02,394 - processor.fileProcessor - INFO - JSON file processed successfully.
+2025-06-04 23:26:02,397 - agents.ClassifierAgent - INFO - Classifying input text.
+2025-06-04 23:26:03,631 - agents.ClassifierAgent - DEBUG - LLM chain invoked successfully.
+2025-06-04 23:26:03,631 - agents.ClassifierAgent - DEBUG - LLM output after stripping: ```json
+{ "format": "json", "intent": "invoice" }
+``` 
+
+
+Let me know if you have any more examples to classify!
+2025-06-04 23:26:03,632 - agents.ClassifierAgent - DEBUG - Extracting JSON from LLM output.
+2025-06-04 23:26:03,632 - agents.ClassifierAgent - DEBUG - Successfully parsed JSON: {'format': 'json', 'intent': 'invoice'}
+2025-06-04 23:26:03,633 - agents.ClassifierAgent - INFO - Classification successful: {'format': 'json', 'intent': 'invoice'}
+2025-06-04 23:26:03,635 - agents.JsonAgent - INFO - Processing JSON payload through JsonAgent chain.
+2025-06-04 23:26:03,636 - agents.JsonAgent - DEBUG - Payload text: {'header': {'tax_scheme': 'GST', 'version': '1.0', 'invoice_reference_no': 'IRN1234567890'}, 'transa...
+2025-06-04 23:26:04,426 - agents.JsonAgent - DEBUG - JsonAgent chain invoked successfully.
+2025-06-04 23:26:04,427 - agents.JsonAgent - DEBUG - LLM output after stripping: ```json
+{
+  "status": "valid",
+  "anomalies": [
+    {
+      "field": "payment.due_date",
+      "description": "Date format is valid but may require further business logic check (e.g., is it a realisti...
+2025-06-04 23:26:04,428 - agents.JsonAgent - DEBUG - Extracting JSON from JSON agent output.
+2025-06-04 23:26:04,429 - agents.JsonAgent - DEBUG - Successfully parsed JSON: {'status': 'valid', 'anomalies': [{'field': 'payment.due_date', 'description': 'Date format is valid but may require further business logic check (e.g., is it a realistic due date)', 'severity': 'minor'}], 'suggested_action': 'log_and_close'}
+2025-06-04 23:26:04,430 - agents.JsonAgent - INFO - JSON validation successful: {'status': 'valid', 'anomalies': [{'field': 'payment.due_date', 'description': 'Date format is valid but may require further business logic check (e.g., is it a realistic due date)', 'severity': 'minor'}], 'suggested_action': 'log_and_close'}
+2025-06-04 23:26:04,434 - __main__ - INFO - Application finished!
+2025-06-04 23:28:45,664 - __main__ - INFO - ============================== NEW SECTION ==============================
+2025-06-04 23:28:45,664 - __main__ - INFO - Application starting up...
+2025-06-04 23:28:45,665 - processor.fileProcessor - INFO - Processing file: E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\txt\sample4.txt
+2025-06-04 23:28:45,667 - processor.fileProcessor - INFO - Text file processed successfully.
+2025-06-04 23:28:45,670 - agents.ClassifierAgent - INFO - Classifying input text.
+2025-06-04 23:28:46,900 - agents.ClassifierAgent - DEBUG - LLM chain invoked successfully.
+2025-06-04 23:28:46,901 - agents.ClassifierAgent - DEBUG - LLM output after stripping: ```json
+{ "format": "email", "intent": "invoice_dispute" }
+```
+2025-06-04 23:28:46,901 - agents.ClassifierAgent - DEBUG - Extracting JSON from LLM output.
+2025-06-04 23:28:46,901 - agents.ClassifierAgent - DEBUG - Successfully parsed JSON: {'format': 'email', 'intent': 'invoice_dispute'}
+2025-06-04 23:28:46,901 - agents.ClassifierAgent - INFO - Classification successful: {'format': 'email', 'intent': 'invoice_dispute'}
+2025-06-04 23:28:46,902 - agents.EmailAgent - INFO - Processing email text through EmailAgent chain.
+2025-06-04 23:28:46,902 - agents.EmailAgent - DEBUG - Email text: Subject: Invoice Discrepancy on INV-12345
+
+Dear Accounts Team,
+
+I hope you’re doing well. I am reach...
+2025-06-04 23:28:47,472 - agents.EmailAgent - DEBUG - Email agent chain invoked successfully.
+2025-06-04 23:28:47,472 - agents.EmailAgent - DEBUG - LLM output after stripping: ```json
+{
+  "sender": "Michael Brown",
+  "urgency": "High",
+  "ContentSummary": "Invoice #12345 contains discrepancies: overcharged items, incorrect shipping charges, and missing discount. Requesting ...
+2025-06-04 23:28:47,473 - agents.EmailAgent - DEBUG - Extracting JSON from email LLM output.
+2025-06-04 23:28:47,473 - agents.EmailAgent - DEBUG - Successfully parsed JSON: {'sender': 'Michael Brown', 'urgency': 'High', 'ContentSummary': 'Invoice #12345 contains discrepancies: overcharged items, incorrect shipping charges, and missing discount. Requesting a revised invoice by June 5, 2025.', 'tone': 'Polite', 'suggested_action': 'escalate'}
+2025-06-04 23:28:47,473 - agents.EmailAgent - INFO - Email processing successful: {'sender': 'Michael Brown', 'urgency': 'High', 'ContentSummary': 'Invoice #12345 contains discrepancies: overcharged items, incorrect shipping charges, and missing discount. Requesting a revised invoice by June 5, 2025.', 'tone': 'Polite', 'suggested_action': 'escalate'}
+2025-06-04 23:28:47,474 - __main__ - INFO - Application finished!

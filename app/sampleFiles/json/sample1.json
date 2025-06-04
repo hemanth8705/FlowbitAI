@@ -1,23 +1,38 @@
-[
-  {
-    "sender": "john.doe@example.com",
-    "urgency": "high",
-    "issue": "I have been charged incorrectly on my last invoice. I need it fixed immediately!",
-    "tone": "angry",
-    "intent": "Complaint"
+{
+  "header": {
+    "tax_scheme": "GST",
+    "version": "1.0",
+    "invoice_reference_no": "IRN1234567890"
   },
-  {
-    "sender": "mary.smith@example.com",
-    "urgency": "low",
-    "issue": "I am unhappy with the quality of your product, but it's not urgent.",
-    "tone": "neutral",
-    "intent": "Complaint"
+  "transaction": {
+    "category": "B2B",
+    "type": "invoice"
   },
-  {
-    "sender": "alex.jones@example.com",
-    "urgency": "medium",
-    "issue": "I have not received my order yet and would like an update.",
-    "tone": "polite",
-    "intent": "Complaint"
+  "document": {
+    "document_type": "invoice",
+    "number": "INV-20240604-001",
+    "date": "2024-06-04"
+  },
+  "seller": {
+    "gstin": "29A1112345678",
+    "trade_name": "Seller Company",
+    "address": "123 Main St, Aravalli"
+  },
+  "buyer": {
+    "gstin": "29B1234567890",
+    "trade_name": "Buyer Company",
+    "address": "456 Elm St, Aravalli"
+  },
+  "items": [
+    {
+      "description": "Product A",
+      "quantity": 10,
+      "price": 10.00,
+      "tax_rate": 18.00
+    }
+  ],
+  "payment": {
+    "due_date": "2024-06-18",
+    "total_amount": 118.00
   }
-]
+}

@@ -1,0 +1,212 @@
+ {{
+                "id ": "fa4da2ff-dcda-4367-a97d-0c9445147b73",
+                "items": [
+                    {{
+                    "name": "Canvas Slip Ons",
+                    "code": "CVG-096732",
+                    "description": "Shoes",
+                    "quantity": "1",
+                    "amount": {{
+                        "value": 1000
+                    }},
+                    "totalAmount": {{
+                        "value": 1000
+                    }} }}
+                    
+                ],
+                "requestReferenceNumber": "5fc10b93-bdbd-4f31-b31d-4575a3785009",
+                "receiptNumber": "7fa0ff6fa5a6",
+                "createdAt": "2021-07-13T15:25:45.000Z",
+                "updatedAt": "2021-07-13T15:26:49.000Z",
+                "paymentScheme": "master-card",
+                "expressCheckout": true,
+                "refundedAmount": "0",
+                "canPayPal": false,
+                "expiredAt": "2021-07-13T16:25:45.000Z",
+                "status": "COMPLETED",
+                "paymentStatus": "PAYMENT_SUCCESS",
+                "paymentDetails": {{
+                    "responses": {{
+                    "efs": {{
+                        "paymentTransactionReferenceNo": "0bea058b-ae8e-4bfc-90d0-7fa0ff6fa5a6",
+                        "status": "SUCCESS",
+                        "receipt": {{
+                        "transactionId": "b8bb70e1-f44f-4db3-bcb9-a939d38455a4",
+                        "receiptNo": "7fa0ff6fa5a6",
+                        "approval_code": "00001234",
+                        "approvalCode": "00001234"
+                        }},
+                        "payer": {{
+                        "fundingInstrument": {{
+                            "card": {{
+                            "cardNumber": "542482******7140",
+                            "expiryMonth": 9,
+                            "expiryYear": "2023"
+                            }}
+                        }}
+                        }},
+                        "amount": {{
+                        "total": {{
+                            "currency": "PHP",
+                            "value": 1000
+                        }}
+                        }},
+                        "created_at": "2021-07-13T15:26:49.514Z"
+                    }}
+                    }},
+                    "paymentAt": "2021-07-13T15:26:49.000Z",
+                    "3ds": false
+                }},
+                "buyer": {{
+                    "contact": {{
+                    "phone": "+639086216587",
+                    "email": "juan.delacruz@paymaya.com"
+                    }},
+                    "firstName": "Juan",
+                    "lastName": "Dela Cruz",
+                    "billingAddress": {{
+                    "line1": "6F Launchpad",
+                    "line2": "Reliance Street",
+                    "city": "Mandaluyong City",
+                    "state": "Metro Manila",
+                    "zipCode": "1552",
+                    "countryCode": "PH"
+                    }},
+                    "shippingAddress": {{
+                    "line1": "6F Launchpad",
+                    "line2": "Reliance Street",
+                    "city": "Mandaluyong City",
+                    "state": "Metro Manila",
+                    "zipCode": "1552",
+                    "countryCode": "PH"
+                    }}
+                }},
+                "merchant": {{
+                    "currency": "PHP",
+                    "email": "merchant@gmail.com",
+                    "locale": "en",
+                    "homepageUrl": "https://www.paymaya.com",
+                    "isEmailToMerchantEnabled": true,
+                    "isEmailToBuyerEnabled": true,
+                    "isPaymentFacilitator": false,
+                    "isPageCustomized": true,
+                    "supportedSchemes": [
+                    "Visa",
+                    "Mastercard",
+                    "JCB"
+                    ],
+                    "canPayPal": false,
+                    "payPalEmail": null,
+                    "payPalWebExperienceId": null,
+                    "expressCheckout": true,
+                    "name": "Omni Merchant via Mock Processor"
+                }},
+                "totalAmount": {{
+                    "value": "1000",
+                    "currency": "PHP",
+                    "details": {{
+                    "discount": "100.00",
+                    "serviceCharge": "0.00",
+                    "shippingFee": "200.00",
+                    "tax": "120.00",
+                    "subtotal": "780.00"
+                    }}
+                }},
+                "redirectUrl": {{
+                    "success": "https://www.merchantsite.com/success?id=5fc10b93-bdbd-4f31-b31d-4575a3785009",
+                    "failure": "https://www.mechantsite.com/failure?id=5fc10b93-bdbd-4f31-b31d-4575a3785009",
+                    "cancel": "https://www.merchantsite.com/cancel?id=5fc10b93-bdbd-4f31-b31d-4575a3785009"
+                }},
+                "transactionReferenceNumber": "0bea058b-ae8e-4bfc-90d0-7fa0ff6fa5a6"
+                }}
+
+
+
+
+
+
+
+
+
+
+      {{
+            "id": "e732f996-cb87-4120-b712-166d8183c01d",
+            "isPaid": true,
+            "status": "PAYMENT_SUCCESS",
+            "amount": "10",
+            "currency": "PHP",
+            "canVoid": true,
+            "canRefund": true,
+            "canCapture": false,
+            "createdAt": "2021-07-01T08:26:13.000Z",
+            "updatedAt": "2021-07-01T08:26:16.000Z",
+            "description": "Charge for maya.juan@mail.com",
+            "paymentTokenId": "f2Z54aBePxQ94bxbKTivBgtP79igw7EtVI2iQ5yC1qSbnpONVZiPBOszn6QWG8eamJ3aMwcshX0RDkCf7skvMCvZkmIwX88Bs4vBsmLpeXJLDpsMkxyhz1PKgTWB9s3ndGtr1SDLOFDrr8IG242xJFCkEWHpdlWkG7lts",
+            "fundSource": {{
+                "type": "paymaya",
+                "id": null,
+                "description": "PayMaya Account",
+                "details": {{
+                "scheme": "master-card",
+                "last4": "4154",
+                "first6": "545301",
+                "masked": "545301******4154",
+                "issuer": "Others"
+                }}
+            }},
+            "receipt": {{
+                "transactionId": "41f17efc-a48b-450d-a69d-6808fd35e8ec",
+                "receiptNo": "18976ad0a321",
+                "approval_code": "00001234",
+                "approvalCode": "00001234"
+            }},
+            "metadata": {{}},
+            "approvalCode": "00001234",
+            "receiptNumber": "18976ad0a321",
+            "requestReferenceNumber":"ABC000001"
+            }}
+
+
+
+
+
+
+
+
+
+
+        {{
+        "id": "e732f996-cb87-4120-b712-166d8183c01d",
+        "isPaid": true,
+        "status": "PAYMENT_SUCCESS",
+        "amount": "100",
+        "currency": "PHP",
+        "canVoid": true,
+        "canRefund": false,
+        "canCapture": false,
+        "createdAt": "2021-07-01T08:17:23.000Z",
+        "updatedAt": "2021-07-01T08:17:47.000Z",
+        "description": "Charge for maya.juan@mail.com",
+        "paymentTokenId": "GFwIun6Avo1kYe0nW7S1jVysqosocS9uMU7XNpMcUEksHx8FZXbE7TQZ3F1YQwZb5xHiAv2b2hpvrpVwYuNH1gPSPdaq8Zr90WXBRMfDVC8KkiHswlRjPz5ToTPEGy76S4S052RkAiwFcC6uAEGKnFyiGZzx7NMcYczrCK8",
+        "fundSource": {{
+            "type": "card",
+            "id": "GFwIun6Avo1kYe0nW7S1jVysqosocS9uMU7XNpMcUEksHx8FZXbE7TQZ3F1YQwZb5xHiAv2b2hpvrpVwYuNH1gPSPdaq8Zr90WXBRMfDVC8KkiHswlRjPz5ToTPEGy76S4S052RkAiwFcC6uAEGKnFyiGZzx7NMcYczrCK8",
+            "description": "**** **** **** 4154",
+            "details": {{
+            "scheme": "master-card",
+            "last4": "4154",
+            "first6": "545301",
+            "masked": "545301******4154",
+            "issuer": "Others"
+            }}
+        }},
+        "receipt": {{
+            "transactionId": "1ec32b34-eb53-4d7b-bcd4-b846aff1d601",
+            "receiptNo": "eb1ae1105a61",
+            "approval_code": "00001234",
+            "approvalCode": "00001234"
+        }},
+        "approvalCode": "00001234",
+        "receiptNumber": "eb1ae1105a61",
+        "requestReferenceNumber": "1625127550"
+        }}
