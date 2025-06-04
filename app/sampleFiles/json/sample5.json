@@ -1,0 +1,16 @@
+[
+  {
+    "document_id": "DOC12345",
+    "title": "GDPR Compliance Report",
+    "content": "This document outlines our compliance with GDPR regulations...",
+    "regulation": "GDPR",
+    "intent": "Regulation"
+  },
+  {
+    "document_id": "DOC67890",
+    "title": "FDA Approval Process",
+    "content": "This document details the steps for FDA approval for medical devices.",
+    "regulation": "FDA",
+    "intent": "Regulation"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "invoice_number": "INV12345",
+    "amount": 2000.00,
+    "date": "2025-05-15",
+    "vendor": "TechSolutions Inc.",
+    "items": [
+      { "description": "Software License", "quantity": 1, "price": 2000.00 }
+    ],
+    "intent": "Invoice"
+  },
+  {
+    "invoice_number": "INV67890",
+    "amount": 12000.00,
+    "date": "2025-06-01",
+    "vendor": "Office Supplies Co.",
+    "items": [
+      { "description": "Office Chairs", "quantity": 50, "price": 200.00 },
+      { "description": "Desks", "quantity": 20, "price": 400.00 }
+    ],
+    "intent": "Invoice"
+  }
+]

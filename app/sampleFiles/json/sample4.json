@@ -1,0 +1,18 @@
+[
+  {
+    "request_id": "RFQ12345",
+    "product": "Custom Software Development",
+    "quantity": 1,
+    "details": "Looking for a custom CRM solution with integrations.",
+    "urgency": "medium",
+    "intent": "RFQ"
+  },
+  {
+    "request_id": "RFQ67890",
+    "product": "Office Furniture",
+    "quantity": 50,
+    "details": "Requesting a bulk quote for office chairs and desks.",
+    "urgency": "low",
+    "intent": "RFQ"
+  }
+]

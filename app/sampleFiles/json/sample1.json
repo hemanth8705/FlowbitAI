@@ -1,0 +1,23 @@
+[
+  {
+    "sender": "john.doe@example.com",
+    "urgency": "high",
+    "issue": "I have been charged incorrectly on my last invoice. I need it fixed immediately!",
+    "tone": "angry",
+    "intent": "Complaint"
+  },
+  {
+    "sender": "mary.smith@example.com",
+    "urgency": "low",
+    "issue": "I am unhappy with the quality of your product, but it's not urgent.",
+    "tone": "neutral",
+    "intent": "Complaint"
+  },
+  {
+    "sender": "alex.jones@example.com",
+    "urgency": "medium",
+    "issue": "I have not received my order yet and would like an update.",
+    "tone": "polite",
+    "intent": "Complaint"
+  }
+]
