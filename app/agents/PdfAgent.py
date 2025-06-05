@@ -5,6 +5,9 @@ import logging
 
 from langchain.prompts import PromptTemplate
 from .llm import llm  # Reuse the shared LLM instance
+from memory.MemoryStore import update_pdf_agent
+import config
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -97,11 +100,11 @@ def processPdf(pdf_text: str) -> dict:
     Returns a dictionary containing documents type, extracted data, anomalies, and suggested action.
     """
     logger.info("Processing PDF text through PDF agent chain.")
-    logger.debug(f"PDF text received for processing: {pdf_text[:100]}...")  # Log first 100 characters
-    
+
     try:
         llm_output = pdf_agent_chain.invoke({"pdf_text": pdf_text})
         logger.debug("PDF agent chain invoked successfully.")
+        logger.debug(f"LLM output: {llm_output}")  # Log the raw LLM output
     except Exception as e:
         logger.error("Error invoking PDF agent chain.", exc_info=True)
         raise e
@@ -120,6 +123,17 @@ def processPdf(pdf_text: str) -> dict:
             logger.error("No valid JSON extracted from LLM output.")
             raise ValueError("No valid JSON found in LLM output.")
         logger.info(f"PDF processing successful, extracted data: {extracted}")
+
+        
+        run_id = config.CURRENT_RUN_ID  # Obtain the proper run_id for this file
+        pdf_output = extracted     # dict from PdfAgent processing
+        action_taken = extracted.get("suggested_action" , "unknown")      # or another action based on thresholds
+        action_payload = { }              # include any details regarding anomalies
+        update_pdf_agent(run_id, pdf_output, action_taken, action_payload)
+        logger.info("#### Memory Update")
+        logger.info(f"PDF agent run_id: {run_id}, action taken: {action_taken}, payload: {action_payload}")
+
+
         return extracted
     except Exception as e:
         logger.error("Error extracting PDF data.", exc_info=True)

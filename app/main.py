@@ -2,15 +2,27 @@ import os
 import logging
 import logging.config
 
-
 from processor.fileProcessor import process_file
 from agents.ClassifierAgent import classifyInput
 from router.AgentRouter import route_to_agent
 from core.ActionRouter import RouteAction
-from memory.MemoryStore import init_db, log_trace , get_all_traces
+from memory.MemoryStore import init_db
+import config
 
+from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+import uuid
+import shutil
 
-init_db()
+import sys
+import os
+
+# Instead of adding the parent directory,
+# add the current directory (i.e. the "app" folder) to sys.path.
+sys.path.insert(0, os.path.dirname(__file__))
+lineLen = 60
+
 # Configure logging
 LOGGING_CONFIG = {
     "version": 1,
@@ -44,58 +56,99 @@ LOGGING_CONFIG = {
 
 logging.config.dictConfig(LOGGING_CONFIG)
 logger = logging.getLogger(__name__)
+logging.getLogger("python_multipart.multipart").setLevel(logging.WARNING)
 
-def main():
+app = FastAPI(title="FlowbitAI Multi-Agent System")
+
+origins = [
+    "http://localhost:5173",  # your React front end URL
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.on_event("startup")
+def startup_event():
+    logger.info("\n"*5)
     logger.info("=" * 30 + " NEW SECTION " + "=" * 30)
     logger.info("Application starting up...")
+    logger.info("Initializing database...")
+    init_db()
+    logger.info("Database initialized successfully.")
 
-    file_path = r"E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\pdfs\invoice.pdf"
-    file_path = r"E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\txt\sample4.txt"
-    # file_path = r"E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\json\sample1.json"
+@app.get("/status/{run_id}")
+async def get_run_status(run_id: str):
+    # Query your memory store (using a helper function) to get the status for a given run_id.
+    # Return a JSON response with the stored metadata.
+    return {"run_id": run_id, "status": "placeholder"}
+
+@app.post("/process")
+async def process_input(file: UploadFile = File(...)):
+
+    # file_path = r"E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\pdfs\wordpress-pdf-invoice-plugin-sample.pdf"
+    # file_path = r"E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\txt\sample4.txt"
+    # file_path = r"E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\json\sample3.json"
+    # Save the file to a local sample directory
+    upload_dir = os.path.join(os.getcwd(), "sampleFiles")
+    os.makedirs(upload_dir, exist_ok=True)
+    file_path = os.path.join(upload_dir, file.filename)
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    
     if not os.path.exists(file_path):
         print("file_path = " , file_path)
         print("File does not exist. Please check the path.")
         return
 
     try:
-            extractedText = process_file(file_path)
+        extractedText = process_file(file_path)
 
-            print("\n📄 Extracted Text:")
-            print(extractedText)
-
-            classification = classifyInput(extractedText)
-
-            print("\n📂 File Classification:")
-            print(classification)
-
-            agent_result = route_to_agent(file_path, classification, extractedText)
-
-            print("\n🧠 Agent Output:")
-            print(agent_result)
-
-            action_response = RouteAction(agent_result)
-
-            print("\n✅ Action Router Response:")
-            print(action_response)
-
-            # log_trace(
-            #     filename=os.path.basename(file_path),
-            #     file_type=agent_result.get("format", "unknown"),
-            #     intent=classification.get("intent", "unknown"),
-            #     agent="email_agent",  # or json/pdf
-            #     extracted_fields=agent_result,
-            #     action=action_response.get("action ", "unknown")
-            # )
+        print("\n📄 Extracted Text:")
+        print(extractedText)
+        logger.info("Extracted text from file: ")
+        logger.info(extractedText) 
+        logger.info("_"*30)
 
 
-            # print("\n🗃️ All Traces:")
-            # traces = get_all_traces()
-            # for trace in traces:
-            #     print(trace)
-            logger.info("Application finished!")
+
+        classification = classifyInput(extractedText)
+
+        print("\n📂 File Classification:")
+        print(classification)
+        logger.info("_"*30)
+
+
+        agent_result = route_to_agent(file_path, classification, extractedText)
+
+        print("\n🧠 Agent Output:")
+        print(agent_result)
+        logger.info("_"*30)
+
+
+
+        action_response = RouteAction(agent_result)
+
+        print("\n✅ Action Router Response:")
+        print(action_response)
+        logger.info("_"*30)
+        logger.info("Application finished!")
+
+        # Return a response including the classification and agent output info
+        return JSONResponse(
+            content={
+                "run_id": config.CURRENT_RUN_ID,
+                "classification": classification,
+                "agent_result": agent_result,
+                "action_response": action_response,
+                "extracted_text": extractedText
+            }
+        )
             
-    except ValueError as e:
-        print(f"❌ Error: {e}")
-
-if __name__ == "__main__":
-    main()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

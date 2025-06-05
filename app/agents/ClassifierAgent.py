@@ -5,7 +5,7 @@ import json
 
 from langchain.prompts import FewShotPromptTemplate, PromptTemplate
 from .llm import llm
-
+import config
 import logging
 
 logger = logging.getLogger(__name__)
@@ -15,6 +15,10 @@ logger.setLevel(logging.DEBUG)
 logging.getLogger("groq._base_client").setLevel(logging.WARNING)
 logging.getLogger("httpcore").setLevel(logging.WARNING)
 logging.getLogger("httpx").setLevel(logging.WARNING)
+
+
+from memory.MemoryStore import update_after_classification
+
 
 
 # Optionally add console handler if not configured elsewhere:
@@ -54,6 +58,7 @@ prompt = FewShotPromptTemplate(
        Intent (complaint, invoice, rfq, fraud risk, regulation)
      Give the output in the following JSON format:
      {{ "format": "<format>", "intent": "<intent>" }}
+     dont give any other information or explanation.
     """,
     suffix="Input: {input}\nFormat:",
     input_variables=["input"]
@@ -63,23 +68,25 @@ classifier_chain = prompt | llm
 
 def extract_json_from_text(raw_text: str) -> dict:
     """
-    Attempts to extract and return a valid JSON object from the raw text.
-    It searches for the first substring that looks like JSON and tries to decode it.
-    If successful, returns the JSON dictionary; otherwise, returns an empty dict.
+    Extracts the substring between the first '{' and the last '}' in the text.
+    Attempts to parse it as JSON and return the object.
+    If parsing fails, returns an empty dictionary.
     """
-    logger.debug("Extracting JSON from LLM output.")
-    pattern = r'({.*?})'
-    candidates = re.findall(pattern, raw_text, re.DOTALL)
+    logger.debug("Extracting JSON from Classifier LLM output.")
+    start = raw_text.find('{')
+    end = raw_text.rfind('}')
     
-    for candidate in candidates:
+    if start != -1 and end != -1 and end > start:
+        json_str = raw_text[start:end + 1]
         try:
-            json_obj = json.loads(candidate)
-            logger.debug(f"Successfully parsed JSON: {json_obj}")
-            return json_obj
-        except json.JSONDecodeError:
-            logger.debug("JSONDecodeError encountered, trying next candidate.")
-            continue
-    logger.warning("No valid JSON found in the LLM output.")
+            parsed = json.loads(json_str)
+            logger.debug(f"Successfully parsed JSON: {parsed}")
+            return parsed
+        except json.JSONDecodeError as e:
+            logger.error(f"JSON decode error: {e}")
+    else:
+        logger.warning("No JSON brackets found in the output.")
+    
     return {}
 
 
@@ -90,10 +97,13 @@ def classifyInput(input_text: str) -> dict:
     Returns a dictionary with 'format' and 'intent'.
     """
     logger.info("Classifying input text.")
-    # logger.debug(f"Input text: {input_text}")
+    logger.info(">>>"*30)
+    logger.debug(f"Input text: {input_text}")
+    logger.info("<<<"*30)
     try:
         llm_output = classifier_chain.invoke({"input": input_text})
         logger.debug("LLM chain invoked successfully.")
+        logger.debug(f"LLM output: {llm_output}")
     except Exception as e:
         logger.error("Error invoking classifier chain.", exc_info=True)
         raise e
@@ -111,6 +121,14 @@ def classifyInput(input_text: str) -> dict:
             logger.error("Extracted classification is empty. No valid JSON found.")
             raise ValueError("No valid JSON found in LLM output.")
         logger.info(f"Classification successful: {classification}")
+
+        run_id = ...           # obtain the proper run_id for this file
+        detected_format = classification.get("format", "")
+        intent = classification.get("intent", "")
+        routed_to = classification.get("format", "unknown")
+        update_after_classification(config.CURRENT_RUN_ID, detected_format, intent, llm_output, routed_to)
+        logger.info("### Memory Update")
+        logger.info(f"Run ID: {config.CURRENT_RUN_ID}, Detected Format: {detected_format}, Intent: {intent}, Routed To: {routed_to}")
         return classification
     except Exception as e:
         logger.error("Error extracting classification.", exc_info=True)

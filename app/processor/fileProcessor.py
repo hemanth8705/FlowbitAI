@@ -4,6 +4,13 @@ import pdfplumber
 import pytesseract
 from PIL import Image
 import logging
+from memory.MemoryStore import insert_run
+import uuid
+
+run_id = str(uuid.uuid4())   # ensure you import uuid
+import config
+config.CURRENT_RUN_ID = run_id
+
 
 # Configure logger for this module
 logger = logging.getLogger(__name__)
@@ -47,7 +54,10 @@ def extract_text_and_tables(pdf_path):
                     page_data["ocr_text"] = ocr_text.strip()
                     
                 all_data.append(page_data)
-            logger.info("Completed extraction from PDF successfully.")
+            logger.info("Completed extraction from PDF in Json format.")
+            logger.info(">>>"*30)
+            logger.debug(f"Extracted data: {json.dumps(all_data, indent=2)}")
+            logger.info("<<<"*30)
     except Exception as e:
         logger.error(f"Error during PDF extraction for {pdf_path}", exc_info=True)
         raise e
@@ -82,8 +92,13 @@ def process_file(file_path):
     logger.info(f"Processing file: {file_path}")
     file_extension = file_path.split('.')[-1].lower()
 
+    insert_run(config.CURRENT_RUN_ID, "upload", file_path, file_extension)
+    logger.info("#### Memory Update")
+    logger.info(f"insert_run called with run_id: {run_id}, source: 'upload', file_path: {file_path}, original_ext: {file_extension}")
+
     if file_extension == "txt":
         try:
+            logger.info("Detected text file.")
             with open(file_path, 'r', encoding='utf-8') as file:
                 text = file.read()
             logger.info("Text file processed successfully.")
@@ -94,6 +109,7 @@ def process_file(file_path):
 
     elif file_extension == "json":
         try:
+            logger.info("Detected JSON file.")
             with open(file_path, 'r', encoding='utf-8') as file:
                 data = json.load(file)
             logger.info("JSON file processed successfully.")
@@ -104,11 +120,11 @@ def process_file(file_path):
 
     elif file_extension == "pdf":
         try:
-            logger.info("Processing PDF file.")
+            logger.info("Detected PDF file.")
             extracted_data = extract_text_and_tables(file_path)
-            converted_text = json_to_llm_text(extracted_data)
+            # converted_text = json_to_llm_text(extracted_data)
             logger.info("PDF file processed successfully.")
-            return converted_text
+            return extracted_data
         except Exception as e:
             logger.error(f"Error processing PDF file: {file_path}", exc_info=True)
             raise e

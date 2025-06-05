@@ -5,6 +5,8 @@ import logging
 
 from langchain.prompts import PromptTemplate
 from .llm import llm  # Reuse the shared LLM instance
+from memory.MemoryStore import update_email_agent
+import config
 
 # Configure logger for this module
 logger = logging.getLogger(__name__)
@@ -76,11 +78,10 @@ def processEmail(email_text: str) -> dict:
     Returns a dictionary with the extracted fields.
     """
     logger.info("Processing email text through EmailAgent chain.")
-    logger.debug(f"Email text: {email_text[:100]}...")  # Log first 100 chars
-
     try:
         llm_output = email_agent_chain.invoke({"email": email_text})
         logger.debug("Email agent chain invoked successfully.")
+        logger.debug(f"LLM output: {llm_output}") 
     except Exception as e:
         logger.error("Error invoking email agent chain.", exc_info=True)
         raise e
@@ -98,6 +99,16 @@ def processEmail(email_text: str) -> dict:
             logger.error("No valid JSON extracted from email LLM output.")
             raise ValueError("No valid JSON found in LLM output.")
         logger.info(f"Email processing successful: {extracted}")
+
+        
+        run_id = config.CURRENT_RUN_ID
+        email_output = extracted    # this should be a dict
+        action_taken = extracted.get("suggested_action" , "unknown")        # or "escalate", etc.
+        action_payload = {"extra": "details"}    # any additional details
+        update_email_agent(run_id, email_output, action_taken, action_payload)
+        logger.info("#### Memory Update")
+        logger.info(f"Email agent run_id: {run_id}, action taken: {action_taken}, payload: {action_payload}")
+
         return extracted
     except Exception as e:
         logger.error("Error extracting email fields.", exc_info=True)

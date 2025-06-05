@@ -1,0 +1,57 @@
+Invoice Number: INV-10001
+Invoice Date: May 28, 2025
+Due Date: June 12, 2025
+
+Bill To:
+ABC Corp.
+123 Business Street
+New York, NY 10001
+
+Ship To:
+XYZ Enterprises
+456 Tech Park
+San Francisco, CA 94105
+
+Description of Services Provided:
+
+Software Development Package
+
+Custom CRM Development (2 Developers)
+
+Estimated Delivery Date: June 15, 2025
+
+Hourly Rate: $100/hour
+
+Total Hours: 80 hours
+
+Amount: $8,000.00
+
+Software Integration with Existing Tools
+
+Integrating CRM with existing marketing platform
+
+Total Hours: 50 hours
+
+Amount: $5,000.00
+
+Training & Documentation
+
+On-site training for your team
+
+Total Hours: 20 hours
+
+Amount: $2,000.00
+
+Subtotal: $15,000.00
+Sales Tax (8.5%): $1,275.00
+
+Total Amount Due: $16,275.00
+
+Payment Instructions:
+Please make the payment via wire transfer to the following account:
+Bank Name: XYZ Bank
+Account Number: 123456789
+Routing Number: 987654321
+
+If you have any questions regarding this invoice, please feel free to contact our billing department at billing@xyzcorp.com or call us at (123) 456-7890.
+

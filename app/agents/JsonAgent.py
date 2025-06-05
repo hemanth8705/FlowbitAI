@@ -5,6 +5,8 @@ import logging
 
 from langchain.prompts import PromptTemplate
 from .llm import llm  # Reuse the shared LLM instance
+from memory.MemoryStore import update_json_agent
+import config
 
 # Configure logger for this module
 logger = logging.getLogger(__name__)
@@ -104,11 +106,11 @@ def processJson(payload_text: str) -> dict:
     Returns a dictionary with the validation result.
     """
     logger.info("Processing JSON payload through JsonAgent chain.")
-    logger.debug(f"Payload text: {str(payload_text)[:100]}...")  # Log first 100 chars
 
     try:
         llm_output = json_agent_chain.invoke({"payload": payload_text})
         logger.debug("JsonAgent chain invoked successfully.")
+        logger.debug(f"LLM output: {llm_output}")
     except Exception as e:
         logger.error("Error invoking JSON agent chain.", exc_info=True)
         raise e
@@ -126,6 +128,16 @@ def processJson(payload_text: str) -> dict:
             logger.error("No valid JSON extracted from JSON agent output.")
             raise ValueError("No valid JSON found in LLM output.")
         logger.info(f"JSON validation successful: {extracted}")
+
+        run_id = config.CURRENT_RUN_ID
+        json_output = extracted
+        action_taken = extracted.get("suggested_action" , "unknown")  # if anomalies exist, for example
+        action_payload = {  }         # additional info
+        update_json_agent(run_id, json_output, action_taken, action_payload)
+        logger.info("#### Memory Update")
+        logger.info(f"JSON agent run_id: {run_id}, action taken: {action_taken}, payload: {action_payload}")
+
+
         return extracted
     except Exception as e:
         logger.error("Error extracting JSON validation result.", exc_info=True)
