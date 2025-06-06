@@ -22,7 +22,7 @@ By storing intermediate state in SQLite and using a small retry framework, this 
 
 Below is a quick demo of the pipeline in action. Click the thumbnail to watch:
 
-[![Demo Video](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
+[![Demo Video](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=2PuFyjAs7JA)
 
 > Replace `VIDEO_ID` with your actual YouTube video ID once uploaded. If you prefer Google Drive, paste the shareable link in place of the YouTube URL above.
 
@@ -31,7 +31,7 @@ Below is a quick demo of the pipeline in action. Click the thumbnail to watch:
 ## 3. Architecture
 
 
-![Project Screenshot](sampleFiles\Architecture.png)
+![Project Screenshot](sampleFiles/Architecture.png)
 
 ---
 
