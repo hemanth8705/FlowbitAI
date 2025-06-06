@@ -34,6 +34,36 @@ Below is a quick demo of the pipeline in action. Click the thumbnail to watch:
 ![Project Screenshot](sampleFiles/Architecture.png)
 
 ---
+## ⚙️ System Workflow Overview
+
+### 🖥️ Client / UI
+- React or CLI uploads a file (PDF, JSON, or TXT) to the backend.
+
+### 🚀 FastAPI (MCP Orchestrator)
+- Generates a unique `run_id`.
+- Inserts initial metadata into SQLite memory.
+- Calls the Classifier Agent to detect file type & intent.
+- Updates memory, then routes to the appropriate specialist agent.
+
+### 🗄️ SQLite Memory (`workflow_run` table)
+- Holds one row per `run_id`.
+- Columns include: `detected_format`, `intent`, each agent’s output, `action_taken`, `action_status`, and an append-only history log.
+
+### 🧠 Classifier Agent
+- Reads extracted text or raw file.
+- Uses heuristics or an LLM to output `{ format, intent, llm_output }`.
+- Updates memory with classification fields.
+
+### 📧 Email / 📄 PDF / 🗃️ JSON Agents
+- **📧 Email Agent**: Parses headers and body, detects sender, tone, and urgency → suggests action (escalate vs. close).
+- **📄 PDF Agent**: Uses `pdfplumber` (and optional OCR fallback) to extract invoice or policy data → flags high-value invoices or compliance keywords.
+- **🗃️ JSON Agent**: Validates payload against Pydantic schemas → flags anomalies or extracts business fields.
+
+### 🔄 Action Router
+- Reads each agent’s suggested action from memory.
+- Calls external endpoints (CRM, Risk, Logging) with retry logic.
+- Updates memory with `action_status` and final `current_status`.
+
 
 ---
 ## 4. 🎯 Key Features
