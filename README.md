@@ -141,7 +141,6 @@ FlowbitAI/
 │   │   └── favicon.ico
 │   └── src/
 │       ├── App.jsx                 # Main React component handling UI and routing display
-│       └── staticRoutingData.js    # Static routing log mappings for sample file outputs
 └── sampleFiles/                      # Sample documents for testing
     ├── Architecture.png             # Diagram of system architecture
     ├── json/
