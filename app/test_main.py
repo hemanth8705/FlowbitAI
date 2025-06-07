@@ -55,7 +55,7 @@ def main():
     logger.info("Database initialized successfully.")
     # file_path = r"E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\pdfs\wordpress-pdf-invoice-plugin-sample.pdf"
     # file_path = r"E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\txt\sample4.txt"
-    file_path = r"E:\langflow_directory\gitRepos\FlowbitAI\app\sampleFiles\json\sample3.json"
+    file_path = r"E:\langflow_directory\gitRepos\FlowbitAI\sampleFiles\txt\sample3.txt"
     if not os.path.exists(file_path):
         print("file_path = " , file_path)
         print("File does not exist. Please check the path.")
@@ -93,20 +93,6 @@ def main():
             print(action_response)
             logger.info("_"*30)
 
-            # log_trace(
-            #     filename=os.path.basename(file_path),
-            #     file_type=agent_result.get("format", "unknown"),
-            #     intent=classification.get("intent", "unknown"),
-            #     agent="email_agent",  # or json/pdf
-            #     extracted_fields=agent_result,
-            #     action=action_response.get("action ", "unknown")
-            # )
-
-
-            # print("\n🗃️ All Traces:")
-            # traces = get_all_traces()
-            # for trace in traces:
-            #     print(trace)
             logger.info("Application finished!")
             
     except ValueError as e:

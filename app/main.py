@@ -17,7 +17,7 @@ import shutil
 
 import sys
 import os
-
+import sqlite3
 # Instead of adding the parent directory,
 # add the current directory (i.e. the "app" folder) to sys.path.
 sys.path.insert(0, os.path.dirname(__file__))
@@ -82,11 +82,27 @@ def startup_event():
     init_db()
     logger.info("Database initialized successfully.")
 
-@app.get("/status/{run_id}")
-async def get_run_status(run_id: str):
-    # Query your memory store (using a helper function) to get the status for a given run_id.
-    # Return a JSON response with the stored metadata.
-    return {"run_id": run_id, "status": "placeholder"}
+# Define the path to your SQLite DB (or use your config variable)
+DB_PATH = os.getenv("DB_PATH", "memory.db")
+
+@app.get("/history")
+async def get_history():
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            run_id = config.CURRENT_RUN_ID 
+            if not run_id:
+                raise HTTPException(status_code=400, detail="No run_id found in config")
+            cursor = conn.cursor()
+            cursor.execute("SELECT history FROM workflow_run WHERE run_id=?", (run_id,))
+            row = cursor.fetchone()
+            if not row:
+                raise HTTPException(status_code=404, detail="Run id not found")
+            # The history field is a JSON string
+            history = row[0]
+            return {"run_id": run_id, "routing_history": history}
+    except Exception as e:
+        logger.exception("Error fetching history")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/process")
 async def process_input(file: UploadFile = File(...)):

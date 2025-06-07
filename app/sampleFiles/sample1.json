@@ -1,0 +1,38 @@
+{
+  "header": {
+    "tax_scheme": "GST",
+    "version": "1.0",
+    "invoice_reference_no": "IRN1234567890"
+  },
+  "transaction": {
+    "category": "B2B",
+    "type": "invoice"
+  },
+  "document": {
+    "document_type": "invoice",
+    "number": "INV-20240604-001",
+    "date": "2024-06-04"
+  },
+  "seller": {
+    "gstin": "29A1112345678",
+    "trade_name": "Seller Company",
+    "address": "123 Main St, Aravalli"
+  },
+  "buyer": {
+    "gstin": "29B1234567890",
+    "trade_name": "Buyer Company",
+    "address": "456 Elm St, Aravalli"
+  },
+  "items": [
+    {
+      "description": "Product A",
+      "quantity": 10,
+      "price": 10.00,
+      "tax_rate": 18.00
+    }
+  ],
+  "payment": {
+    "due_date": "2024-06-18",
+    "total_amount": 118.00
+  }
+}
