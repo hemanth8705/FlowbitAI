@@ -22,7 +22,7 @@ By storing intermediate state in SQLite and using a small retry framework, this 
 
 Below is a quick demo of the pipeline in action. Click the thumbnail to watch:
 
-[![Demo Video](https://img.goodfon.com/original/1920x1080/5/c6/chernyy-fon-tekst-bukvy-test.jpg)]
+[![Demo Video](https://img.goodfon.com/original/1920x1080/5/c6/chernyy-fon-tekst-bukvy-test.jpg)](https://drive.google.com/file/d/1qtwB7YiYhrKtkWHFA6pXZ80nnM67SpZJ/view)
 
 > Replace `VIDEO_ID` with your actual YouTube video ID once uploaded. If you prefer Google Drive, paste the shareable link in place of the YouTube URL above.
 
